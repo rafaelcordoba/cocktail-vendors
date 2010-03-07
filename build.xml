@@ -1,0 +1,50 @@
+<project name="Vendors SWC Generation" basedir=".">
+	<!-- FLEX TASKS PROPERTY -->
+	<property name="FLEX_HOME" value="/Applications/Eclipse/plugins/com.powerflasher.fdt.shippedflex_3.3.0.4852_1001/flex/" />
+
+	<!-- FLEX SWCs -->
+	<property name="SWCS" value="${FLEX_HOME}/" />
+
+	<!-- PROJECT PROPERTIES -->
+	<property name="vendors-src" value="${basedir}/vendors-src/src" />
+	<property name="vendors-bin" value="${basedir}/vendors-bin/" />
+
+	<!-- FLEX TASK RESOURCE -->
+	<taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar" />
+
+	<!-- GENERATE SWFADDRESS -->
+	<target name="swfaddress" description="Compile SWFAddress package into an SWC library file">
+		<echo>Compiling SWFAddress...</echo>
+		<compc output="${vendors-bin}/swfaddress.swc">
+			<source-path path-element="${vendors-src}" />
+			<include-sources dir="${vendors-src}/com/asual/">
+				<include name="*" />
+			</include-sources>
+		</compc>
+		<echo>The file 'swfaddress.swc' was generated into /vendors-bin/ folder.</echo>
+	</target>
+
+	<!-- GENERATE AS3DS -->
+	<target name="as3ds" description="Compile AS3 Data Structures package into an SWC library file">
+		<echo>Compiling AS3 Data Structures...</echo>
+		<compc output="${vendors-bin}/as3ds.swc">
+			<source-path path-element="${vendors-src}" />
+			<include-sources dir="${vendors-src}/de/">
+				<include name="*" />
+			</include-sources>
+		</compc>
+		<echo>The file 'as3ds.swc' was generated into /vendors-bin/ folder.</echo>
+	</target>
+
+	<!-- GENERATE AS3CORELIB -->
+	<target name="as3corelib-json" description="Compile AS3CoreLib package into an SWC library file">
+		<echo>Compiling AS3CoreLib JSON Serialization...</echo>
+		<compc output="${vendors-bin}/as3corelib-json.swc">
+			<source-path path-element="${vendors-src}" />
+			<include-sources dir="${vendors-src}/com/adobe/serialization/json/">
+				<include name="*" />
+			</include-sources>
+		</compc>
+		<echo>The file 'as3corelib-json.swc' was generated into /vendors-bin/ folder.</echo>
+	</target>
+</project>
